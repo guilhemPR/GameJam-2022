@@ -40,8 +40,7 @@ public class Joueur : MonoBehaviour
         if (gameRunBool)
         {
             PlayerMove();
-            playerBoost();
-            PlayerRaycast();
+            playerBoost(); 
         }
     }
 
@@ -126,55 +125,6 @@ public class Joueur : MonoBehaviour
             
         }
     }
-
-    private void PlayerRaycast()
-    {
-        Ray ray = new Ray(transform.position, transform.up); 
-        RaycastHit hit;
-        
-        if (Physics.Raycast(ray,out hit, 3))
-        {
-            if (hit.collider.gameObject.CompareTag("Miam"))
-            {
-                GameObject fioulTaken = hit.collider.gameObject; 
-                
-                Debug.Log("proute");
-            
-                while (fioulTaken != null)
-                {
-                   
-                    
-                    Vector3 fioulPosition = fioulTaken.transform.position;
-                    
-                    fioulTaken.transform.position = new Vector3(fioulPosition.x - 0.2f, fioulPosition.y, fioulPosition.z);
-
-                    StartCoroutine(FioulAcquisition()); 
-                }
-                
-            }
-        } 
-    }
-    
-    IEnumerator FioulAcquisition()
-    {
-       
-
-        yield return new WaitForSeconds(0.1f);
-    }
-
- 
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     private void OnEnable()
     {
