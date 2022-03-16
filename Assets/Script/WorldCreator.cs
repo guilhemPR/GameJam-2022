@@ -112,7 +112,7 @@ public class WorldCreator : MonoBehaviour
 
             GameObject _newPlanet = Instantiate(_planetPrefab, _randomSpawnPosition, Quaternion.identity);
 
-            int bigPlanetLuck = Random.Range(0, 20);
+            int bigPlanetLuck = Random.Range(0, 2);
 
             if (bigPlanetLuck == 1)
             {

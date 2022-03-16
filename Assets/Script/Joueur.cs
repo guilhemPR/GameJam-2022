@@ -74,28 +74,28 @@ public class Joueur : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y,transform.position.z + speed*Time.deltaTime);
            
-            if (transform.rotation.z < 40)
+            if (transform.rotation.z <3)
             {
-                transform.Rotate(0,0.1f, 0);
+                transform.Rotate(0,0.08f, 0);
             }
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z > minPos)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z -speed*Time.deltaTime);
-            if (transform.rotation.z > -40)
+            if (transform.rotation.z > -3)
             {
-                transform.Rotate(0,-0.1f, 0);
+                transform.Rotate(0,-0.08f, 0);
             }
         }
         else if (transform.rotation.y != 0)
         {
             if (transform.rotation.y>0)
             {
-                transform.Rotate(0, -0.1f, 0);
+                transform.Rotate(0, -0.05f, 0);
             }
             if (transform.rotation.y<0)
             {
-                transform.Rotate(0,0.1f, 0);
+                transform.Rotate(0,0.05f, 0);
             }
         }
     }
