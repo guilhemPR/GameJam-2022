@@ -875,7 +875,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 993041593356225830, guid: 2c65fc22c47ac654f99f53852b339a8a, type: 3}
       propertyPath: speed
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 993041593356225830, guid: 2c65fc22c47ac654f99f53852b339a8a, type: 3}
       propertyPath: maxPos
@@ -887,7 +887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 993041593356225830, guid: 2c65fc22c47ac654f99f53852b339a8a, type: 3}
       propertyPath: flySpeed
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 993041593356225830, guid: 2c65fc22c47ac654f99f53852b339a8a, type: 3}
       propertyPath: scoreText

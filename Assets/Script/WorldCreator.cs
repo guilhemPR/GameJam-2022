@@ -13,8 +13,7 @@ public class WorldCreator : MonoBehaviour
     // ----- Variables for Environment creation ----- // 
 
     [SerializeField] private GameObject worldCreatorTarget;
-    private Vector3 _worldCreatorTargetVector3 = new Vector3(-100, 0f, 0f);
-    private float _worldCreatorSpeed = 1f;
+    private float _worldCreatorSpeed = 100f;
 
     [SerializeField] private GameObject _fioulGameObject;
     [SerializeField] private GameObject _dustPrefab;
@@ -36,7 +35,7 @@ public class WorldCreator : MonoBehaviour
         StartCoroutine(PlanetDelayAndSpawn());
     }
 
-    void FixedUpdate()
+    void Update()
     {
 
         WorldCreationMove(); // Fonction us to move the world Creation Asset; 
@@ -45,9 +44,7 @@ public class WorldCreator : MonoBehaviour
 
     private void WorldCreationMove() // Fonction us to move the world Creation Asset; 
     {
-        gameObject.transform.position =
-            (gameObject.transform.position + Vector3.Normalize(_worldCreatorTargetVector3)) * _worldCreatorSpeed;
-        Debug.Log(Vector3.Normalize(_worldCreatorTargetVector3));
+        gameObject.transform.position =  new Vector3(transform.position.x - _worldCreatorSpeed*Time.deltaTime, transform.position.y, transform.position.z);
     }
 
 
@@ -57,7 +54,7 @@ public class WorldCreator : MonoBehaviour
         while (gameRunBool)
         {
 
-            Vector3 _randomSpawnPosition = new Vector3(gameObject.transform.position.x + 600f,
+            Vector3 _randomSpawnPosition = new Vector3(gameObject.transform.position.x,
                 gameObject.transform.position.y,
                 Random.Range(-8, 8));
 
