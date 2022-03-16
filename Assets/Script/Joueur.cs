@@ -155,7 +155,7 @@ public class Joueur : MonoBehaviour
         } 
     }
     
-    IEnumerable FioulAcquisition()
+    IEnumerator FioulAcquisition()
     {
        
 
