@@ -18,5 +18,12 @@ public class Menu : MonoBehaviour
         
     }
     
+    public void Retour()
+    {
+        SceneManager.LoadScene("Menu");
+        
+    }
+
+    
     
 }
