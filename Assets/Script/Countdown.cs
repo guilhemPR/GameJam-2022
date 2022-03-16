@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
@@ -8,36 +7,36 @@ using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour
 {
-    public delegate void InputAction();
-
-    public static event InputAction up; 
-    
-    
-    private float time = 0f;
-    private float timeEnd = 60f; 
+    public float time = 50f;
     public bool countDonwnOn = true;
-
-
     void Start()
     {
         StartCoroutine(timer());
     }
 
-    IEnumerator timer()
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+     IEnumerator timer()
         {
-            while (time<timeEnd)
+            while (time>0)
             {
-                time++;
-                if (time >= timeEnd)
-                {
-                  up?.Invoke();
-                }
-                
+                time--;
+                GetComponent<TextMeshProUGUI>().text = "" + time;
                 yield return new WaitForSeconds(1f);
             }
         }
-        
-     
-  
+     private void OnTriggerEnter(Collider other)
+     {
+         if (other.gameObject.CompareTag("Miam"))
+         {
+             // _scoreValue= _scoreValue+ 10;
+             // scoreText.text = "temps restant : " + _scoreValue;
+            
+         } 
+     }
 }
 
