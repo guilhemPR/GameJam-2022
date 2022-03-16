@@ -10,9 +10,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Script/Highscore.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -44,6 +41,8 @@
       <workItem from="1647427325037" duration="317000" />
       <workItem from="1647434584301" duration="393000" />
       <workItem from="1647439408441" duration="3639000" />
+      <workItem from="1647443686564" duration="1574000" />
+      <workItem from="1647446161818" duration="2000" />
     </task>
     <servers />
   </component>

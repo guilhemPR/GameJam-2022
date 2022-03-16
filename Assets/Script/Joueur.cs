@@ -49,10 +49,9 @@ public class Joueur : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Miam"))
         {
-           // _scoreValue= _scoreValue+ 10;
-           // scoreText.text = "temps restant : " + _scoreValue;
             _scoreValue++;
             scoreText.text = "Score : " + _scoreValue;
+            int variable = PlayerPrefs.GetInt("scoreText");
             Destroy((other.gameObject));
         } 
     }

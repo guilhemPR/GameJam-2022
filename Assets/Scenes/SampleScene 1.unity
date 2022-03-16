@@ -863,6 +863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countDonwnOn: 1
+  LevelToLoad: Fin
 --- !u!1 &2042131350
 GameObject:
   m_ObjectHideFlags: 0
