@@ -8,5 +8,15 @@ public class Menu : MonoBehaviour
     public void Jouer()
     {
         SceneManager.LoadScene("SampleScene 1");
+        
     }
+    
+    
+    public void Resultat()
+    {
+        SceneManager.LoadScene("Score");
+        
+    }
+    
+    
 }
