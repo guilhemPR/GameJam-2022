@@ -15,7 +15,10 @@ public class Joueur : MonoBehaviour
     public TextMeshProUGUI scoretime;
     private int _scoreValue;
     
+    private bool gameRunBool = true;
+
    
+
 
 
     private float BoostSpeed = 0.1f;
@@ -24,57 +27,11 @@ public class Joueur : MonoBehaviour
     
     private void Update()
     {
-        /*if (Input.GetAxis("Horizontal") != 0)
+        if (gameRunBool)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y,
-                Mathf.Clamp(transform.position.z + Input.GetAxis("Horizontal") * speed, minPos, maxPos));
-            
-            
-        }*/
-        if (Input.GetKey(KeyCode.RightArrow) && transform.position.z < maxPos)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y,transform.position.z + speed*Time.deltaTime);
-           
-            if (transform.rotation.z < 40)
-            {
-                transform.Rotate(0,0.1f, 0);
-            }
+            PlayerMove();
+            playerBoost();
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z > minPos)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z -speed*Time.deltaTime);
-            if (transform.rotation.z > -40)
-            {
-                transform.Rotate(0,-0.1f, 0);
-            }
-        }
-        else if (transform.rotation.y != 0)
-        {
-            if (transform.rotation.y>0)
-            {
-                transform.Rotate(0, -0.1f, 0);
-            }
-            if (transform.rotation.y<0)
-            {
-                transform.Rotate(0,0.1f, 0);
-            }
-        }
-        
-        
-
-        if (Input.GetKey(KeyCode.Space) && BoostTime>0)
-        {
-            transform.position += transform.up * (flySpeed + BoostSpeed)*Time.deltaTime;
-            StartCoroutine(SpeedBoostIncrease());
-
-     
-        }
-        else
-        {
-            transform.position = new Vector3(transform.position.x - flySpeed*Time.deltaTime, transform.position.y, transform.position.z);
-            
-        }
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -109,6 +66,67 @@ public class Joueur : MonoBehaviour
         Debug.Log(BoostSpeed);
         
         yield return new WaitForSeconds(1f); 
-    } 
+    }
 
+    private void PlayerMove()
+    {
+        if (Input.GetKey(KeyCode.RightArrow) && transform.position.z < maxPos)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y,transform.position.z + speed*Time.deltaTime);
+           
+            if (transform.rotation.z < 40)
+            {
+                transform.Rotate(0,0.1f, 0);
+            }
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) && transform.position.z > minPos)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z -speed*Time.deltaTime);
+            if (transform.rotation.z > -40)
+            {
+                transform.Rotate(0,-0.1f, 0);
+            }
+        }
+        else if (transform.rotation.y != 0)
+        {
+            if (transform.rotation.y>0)
+            {
+                transform.Rotate(0, -0.1f, 0);
+            }
+            if (transform.rotation.y<0)
+            {
+                transform.Rotate(0,0.1f, 0);
+            }
+        }
+    }
+
+    private void playerBoost()
+    {
+        if (Input.GetKey(KeyCode.Space) && BoostTime>0)
+        {
+            transform.position += transform.up * (flySpeed + BoostSpeed)*Time.deltaTime;
+            StartCoroutine(SpeedBoostIncrease());
+
+     
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x - flySpeed*Time.deltaTime, transform.position.y, transform.position.z);
+            
+        }
+    }
+    private void OnEnable()
+    {
+        Countdown.up += Stop; 
+    }
+    private void OnDisable()
+    {
+        Countdown.up -= Stop; 
+    }
+
+    private void Stop()
+    {
+        gameRunBool = !gameRunBool;
+
+    }
 }
