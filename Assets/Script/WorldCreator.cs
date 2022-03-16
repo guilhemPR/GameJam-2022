@@ -58,7 +58,7 @@ public class WorldCreator : MonoBehaviour
         while (gameRunBool)
         {
 
-            Vector3 _randomSpawnPosition = new Vector3(gameObject.transform.position.x,
+            Vector3 _randomSpawnPosition = new Vector3(gameObject.transform.position.x+900,
                 gameObject.transform.position.y,
                 Random.Range(-6, 6));
 
