@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class WorldCreator : MonoBehaviour
@@ -8,12 +9,12 @@ public class WorldCreator : MonoBehaviour
 
     // --- The  game is not end -- //
 
-    protected bool gameRunBool = true;
+    private bool gameRunBool = true;
 
     // ----- Variables for Environment creation ----- // 
 
     [SerializeField] private GameObject worldCreatorTarget;
-    private float _worldCreatorSpeed = 100f;
+    private float _worldCreatorSpeed = 60f;
 
     [SerializeField] private GameObject _fioulGameObject;
     [SerializeField] private GameObject _dustPrefab;
@@ -21,7 +22,7 @@ public class WorldCreator : MonoBehaviour
 
     // --- variables rythme of fioul spawn --- // 
 
-    private float[] _spawnRythmeTime = { 0.5f, 1f, 1.5f, 2f, 3f };
+    private float[] _spawnRythmeTime = { 0.9f, 1.2f, 1.5f, 1.8f, 3f };
     private int _spawnRytmeNomber;
     private int _spawnRytmeNomberRests;
 
@@ -38,7 +39,10 @@ public class WorldCreator : MonoBehaviour
     void Update()
     {
 
-        WorldCreationMove(); // Fonction us to move the world Creation Asset; 
+        if (gameRunBool)
+        {
+              WorldCreationMove(); // Fonction us to move the world Creation Asset; 
+        }
 
     }
 
@@ -56,7 +60,7 @@ public class WorldCreator : MonoBehaviour
 
             Vector3 _randomSpawnPosition = new Vector3(gameObject.transform.position.x,
                 gameObject.transform.position.y,
-                Random.Range(-8, 8));
+                Random.Range(-6, 6));
 
             float _randomSpawnTime = Random.Range(2f, 4f);
 
@@ -122,8 +126,20 @@ public class WorldCreator : MonoBehaviour
             }
             yield return new WaitForSeconds(_randomSpawnTime);
         }
-        
+    }
 
+    private void OnEnable()
+    {
+        Countdown.up += Stop; 
+    }
+    private void OnDisable()
+    {
+        Countdown.up -= Stop; 
+    }
+
+    private void Stop()
+    {
+        gameRunBool = !gameRunBool;
 
     }
 }
