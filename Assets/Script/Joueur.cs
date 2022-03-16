@@ -4,13 +4,25 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Jobs;
 using UnityEngine.UI;
+using UnityEngine.Windows.WebCam;
 
 public class Joueur : MonoBehaviour
 {
+    // ----- Player Move --- // 
+    
     public float speed = 0.005f;
     public float flySpeed = 0.5f;
     public float minPos = -3.75f;
     public float maxPos = 3.75f;
+ 
+    
+    private float BoostSpeed = 0.1f;
+    private int BoostTime = 15;
+
+
+    // ----- Player Score Variable ---- // 
+    
+    
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI scoretime;
     private int _scoreValue;
@@ -21,9 +33,7 @@ public class Joueur : MonoBehaviour
 
 
 
-    private float BoostSpeed = 0.1f;
-    private int BoostTime = 15;
-    
+   
     
     private void Update()
     {
@@ -31,6 +41,7 @@ public class Joueur : MonoBehaviour
         {
             PlayerMove();
             playerBoost();
+            PlayerRaycast();
         }
     }
 
@@ -115,6 +126,56 @@ public class Joueur : MonoBehaviour
             
         }
     }
+
+    private void PlayerRaycast()
+    {
+        Ray ray = new Ray(transform.position, transform.up); 
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray,out hit, 3))
+        {
+            if (hit.collider.gameObject.CompareTag("Miam"))
+            {
+                GameObject fioulTaken = hit.collider.gameObject; 
+                
+                Debug.Log("proute");
+            
+                while (fioulTaken != null)
+                {
+                   
+                    
+                    Vector3 fioulPosition = fioulTaken.transform.position;
+                    
+                    fioulTaken.transform.position = new Vector3(fioulPosition.x - 0.2f, fioulPosition.y, fioulPosition.z);
+
+                    StartCoroutine(FioulAcquisition()); 
+                }
+                
+            }
+        } 
+    }
+    
+    IEnumerable FioulAcquisition()
+    {
+       
+
+        yield return new WaitForSeconds(0.1f);
+    }
+
+ 
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void OnEnable()
     {
         Countdown.up += Stop; 
