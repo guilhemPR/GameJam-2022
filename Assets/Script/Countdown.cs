@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Timers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour
@@ -16,6 +17,7 @@ public class Countdown : MonoBehaviour
     private float time = 0f;
     private float timeEnd = 60f; 
     public bool countDonwnOn = true;
+    public string LevelToLoad;
 
 
     void Start()
@@ -31,6 +33,7 @@ public class Countdown : MonoBehaviour
                 if (time >= timeEnd)
                 {
                   up?.Invoke();
+                  SceneManager.LoadScene(LevelToLoad);
                 }
                 
                 yield return new WaitForSeconds(1f);
